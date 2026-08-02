@@ -1,33 +1,22 @@
 # TODO
 
-## Day 1
-- [x] Project Setup
-- [x] Next.js Setup
-- [x] Git Initialization
+## Completed
 
-## Day 2
-- [ ] AWS Setup
-- [ ] IAM
-- [ ] AWS CLI
-- [ ] Create S3 Bucket
+- [x] Day 1 Project Setup
+- [x] AWS Account Setup
+- [x] IAM User
+- [x] AWS CLI
+- [x] Amazon S3
 
-## Day 3
-- [ ] Create Kinesis Stream
+## In Progress
 
-## Day 4
-- [ ] Create Lambda Function
+- [ ] Amazon SQS
 
-## Day 5
-- [ ] Create DynamoDB
+## Pending
 
-## Day 6
-- [ ] Event Generator
-
-## Day 7
-- [ ] Dashboard
-
-## Day 8
-- [ ] Testing
-
-## Day 9
+- [ ] AWS Lambda
+- [ ] DynamoDB
+- [ ] API Gateway
+- [ ] Next.js Dashboard
+- [ ] CloudWatch
 - [ ] Deployment
