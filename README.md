@@ -93,3 +93,12 @@ Amazon S3
 - ⏳ Day 8 – CloudWatch
 - ⏳ Day 9 – Testing
 - ⏳ Day 10 – Deployment
+
+## Day 3 Progress
+
+- Configured AWS SDK with IAM credentials
+- Created Amazon SQS queue
+- Built IoT Event Simulator
+- Generated random sensor events
+- Successfully sent events to Amazon SQS
+- Verified messages in AWS Console

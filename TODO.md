@@ -20,3 +20,11 @@
 - [ ] Next.js Dashboard
 - [ ] CloudWatch
 - [ ] Deployment
+
+## Completed
+
+- [x] AWS CLI configuration
+- [x] Amazon SQS setup
+- [x] IoT Event Simulator
+- [x] AWS SDK integration
+- [x] Send messages to SQS
