@@ -6,3 +6,7 @@ coverage
 dist
 .vscode
 .DS_Store
+
+# Simulator
+simulator/node_modules/
+simulator/.env

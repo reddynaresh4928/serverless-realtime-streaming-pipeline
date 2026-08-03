@@ -1,0 +1,24 @@
+{
+  "name": "simulator",
+  "version": "1.0.0",
+  "description": "IoT Event Simulator for Serverless Real-Time Streaming Pipeline",
+  "type": "module",
+  "main": "src/producer.js",
+  "scripts": {
+    "start": "node src/producer.js"
+  },
+  "keywords": [
+    "aws",
+    "sqs",
+    "serverless",
+    "iot",
+    "streaming"
+  ],
+  "author": "Naresh Reddy",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.1101.0",
+    "dotenv": "^17.4.2",
+    "uuid": "^14.0.1"
+  }
+}
