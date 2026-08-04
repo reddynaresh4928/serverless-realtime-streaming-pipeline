@@ -1,7 +1,7 @@
 # Architecture
 
-```
-                 Node.js Event Simulator
+```text
+                 Node.js IoT Simulator
                           │
                           ▼
                     Amazon SQS Queue
@@ -10,48 +10,77 @@
                      AWS Lambda
                           │
                           ▼
-                  Amazon DynamoDB
-                          │
-                          ▼
-                  Amazon API Gateway
-                          │
-                          ▼
-                 Next.js Dashboard
-                          │
-                          ▼
-                Amazon S3 (Reports)
+                  Amazon CloudWatch Logs
 ```
 
-## Components
+---
 
-### Node.js Simulator
+# Components
 
-Generates fake IoT sensor events.
+## Node.js IoT Simulator
 
-### Amazon SQS
+Generates random IoT sensor events including:
 
-Receives events from the simulator.
+- Device ID
+- Temperature
+- Humidity
+- Timestamp
 
-### AWS Lambda
+The simulator sends each event to Amazon SQS using the AWS SDK.
 
-Processes each incoming event.
+---
 
-### DynamoDB
+## Amazon SQS
 
-Stores processed event data.
+Acts as the message queue for incoming IoT events.
 
-### API Gateway
+It decouples the event producer from the event consumer and ensures reliable message delivery.
 
-Provides REST APIs.
+---
 
-### Next.js Dashboard
+## AWS Lambda
 
-Displays events and analytics.
+Automatically triggered whenever a new message arrives in the SQS queue.
 
-### CloudWatch
+Responsibilities:
 
-Stores logs and metrics.
+- Receive messages from Amazon SQS
+- Parse the JSON payload
+- Process incoming IoT events
+- Log execution details to CloudWatch
 
-### Amazon S3
+---
 
-Stores reports and backups.
+## Amazon CloudWatch Logs
+
+Captures Lambda execution logs for monitoring and debugging.
+
+CloudWatch allows verification that events are successfully processed by the Lambda function.
+
+---
+
+# Current Workflow
+
+```text
+Node.js IoT Simulator
+        │
+        ▼
+Amazon SQS Queue
+        │
+        ▼
+AWS Lambda
+        │
+        ▼
+CloudWatch Logs
+```
+
+---
+
+# Upcoming Enhancements
+
+The following components will be added in the next development phases:
+
+- Amazon DynamoDB (Persistent event storage)
+- Amazon API Gateway (REST APIs)
+- Next.js Dashboard (Real-time visualization)
+- Amazon S3 (Report storage and backups)

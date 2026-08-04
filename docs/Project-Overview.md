@@ -2,7 +2,7 @@
 
 ## Project Name
 
-Serverless Event-Driven Data Processing Pipeline on AWS
+**Serverless Event-Driven Data Processing Pipeline on AWS**
 
 ---
 
@@ -10,25 +10,59 @@ Serverless Event-Driven Data Processing Pipeline on AWS
 
 This project demonstrates how event-driven systems work in cloud environments using AWS serverless services.
 
-A JavaScript event simulator generates IoT-style events. Amazon SQS receives those events. AWS Lambda processes them and stores the processed data in DynamoDB.
+A Node.js IoT event simulator generates random sensor events and sends them to Amazon SQS. AWS Lambda automatically processes each incoming message and records execution details in Amazon CloudWatch Logs.
 
-API Gateway exposes APIs for a Next.js dashboard which visualizes events in near real-time.
-
-CloudWatch monitors logs while Amazon S3 stores backup files and reports.
+The project is being developed incrementally. Future phases will integrate Amazon DynamoDB for persistent storage, API Gateway for REST APIs, and a Next.js dashboard for real-time visualization.
 
 ---
 
 ## Objectives
 
-- Learn Event-Driven Architecture
-- Learn Serverless Computing
-- Work with AWS Services
-- Build a production-style cloud application
-- Understand cloud monitoring
-- Build a real-time dashboard
+- Understand Event-Driven Architecture
+- Learn Serverless Computing on AWS
+- Build cloud-native applications using AWS services
+- Simulate and process IoT sensor events
+- Implement asynchronous message processing with Amazon SQS
+- Process events using AWS Lambda
+- Monitor applications using Amazon CloudWatch
+- Extend the project with DynamoDB, API Gateway, and Next.js
+
+---
+
+## Current Implementation
+
+The application currently includes:
+
+- Node.js IoT Event Simulator
+- Amazon SQS Queue
+- AWS Lambda Function
+- Amazon CloudWatch Logging
+
+Current workflow:
+
+```text
+Node.js IoT Simulator
+        │
+        ▼
+Amazon SQS Queue
+        │
+        ▼
+AWS Lambda
+        │
+        ▼
+CloudWatch Logs
+```
 
 ---
 
 ## Expected Outcome
 
-A fully working event-driven cloud application capable of receiving, processing, storing, and visualizing cloud events.
+By the end of the project, the application will evolve into a complete serverless event-driven data processing pipeline capable of:
+
+- Receiving IoT sensor events
+- Processing events asynchronously
+- Storing processed data in Amazon DynamoDB
+- Exposing REST APIs using API Gateway
+- Visualizing data through a Next.js dashboard
+- Monitoring system activity with CloudWatch
+- Storing reports and backups in Amazon S3

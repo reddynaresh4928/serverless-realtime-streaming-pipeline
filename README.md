@@ -2,39 +2,26 @@
 
 ## 📖 Overview
 
-This project demonstrates a complete serverless event-driven architecture built on AWS.
+This project demonstrates a serverless event-driven architecture built on AWS.
 
-A Node.js event simulator generates sensor events which are pushed into Amazon SQS. AWS Lambda processes each event and stores it in Amazon DynamoDB. API Gateway exposes REST APIs which are consumed by a Next.js dashboard for real-time visualization. Amazon S3 is used for storing reports and backup files, while CloudWatch provides monitoring and logging.
+A Node.js IoT event simulator generates random sensor events and sends them to Amazon SQS. AWS Lambda automatically processes incoming messages from the queue and records execution details in Amazon CloudWatch Logs. The project is being developed incrementally, with additional AWS services such as DynamoDB, API Gateway, and a Next.js dashboard planned in future phases.
 
 ---
 
 ## 🏗 Architecture
 
-Node.js Event Simulator
-
-↓
-
-Amazon SQS
-
-↓
-
+```text
+Node.js IoT Simulator
+        │
+        ▼
+Amazon SQS Queue
+        │
+        ▼
 AWS Lambda
-
-↓
-
-Amazon DynamoDB
-
-↓
-
-Amazon API Gateway
-
-↓
-
-Next.js Dashboard
-
-↓
-
-Amazon S3
+        │
+        ▼
+CloudWatch Logs
+```
 
 ---
 
@@ -42,63 +29,88 @@ Amazon S3
 
 ### Frontend
 
-- Next.js
-- JavaScript
-- Tailwind CSS
+- Next.js (Planned)
 
 ### Backend
 
-- AWS Lambda
 - Node.js
+- AWS Lambda
 
 ### AWS Services
 
 - Amazon SQS
-- Amazon DynamoDB
+- AWS Lambda
 - Amazon S3
-- Amazon API Gateway
 - Amazon CloudWatch
 - IAM
+- AWS CLI
 
 ### Tools
 
 - Git
 - GitHub
-- AWS CLI
 - VS Code
 
 ---
 
-## 🎯 Features
+## ✨ Features
 
-- Event-driven architecture
-- Serverless computing
-- Real-time dashboard
-- Cloud monitoring
-- Scalable backend
-- REST APIs
-- Cloud storage
+- Serverless event-driven architecture
+- IoT event simulator using Node.js
+- Automatic message processing with AWS Lambda
+- Message queuing using Amazon SQS
+- CloudWatch logging for monitoring
+- Modular project structure
+- AWS CLI integration
 
 ---
 
-## 📅 Development Roadmap
+## 📅 Development Progress
 
-- ✅ Day 1 – Project Setup
-- ✅ Day 2 – AWS Setup
-- 🔄 Day 3 – Amazon SQS
-- ⏳ Day 4 – AWS Lambda
-- ⏳ Day 5 – DynamoDB
-- ⏳ Day 6 – API Gateway
-- ⏳ Day 7 – Next.js Dashboard
-- ⏳ Day 8 – CloudWatch
-- ⏳ Day 9 – Testing
-- ⏳ Day 10 – Deployment
+### ✅ Completed
 
-## Day 3 Progress
+- Day 1 – Project Setup
+- Day 2 – AWS Setup (IAM, AWS CLI, S3)
+- Day 3 – Amazon SQS & IoT Event Simulator
+- Day 4 – AWS Lambda & CloudWatch Integration
 
-- Configured AWS SDK with IAM credentials
-- Created Amazon SQS queue
-- Built IoT Event Simulator
-- Generated random sensor events
-- Successfully sent events to Amazon SQS
-- Verified messages in AWS Console
+### ⏳ Upcoming
+
+- Day 5 – DynamoDB Integration
+- Day 6 – API Gateway
+- Day 7 – Next.js Dashboard
+- Day 8 – Monitoring Enhancements
+- Day 9 – S3 Report Storage
+- Day 10 – Final Deployment & Documentation
+
+---
+
+## 📌 Current Workflow
+
+```text
+IoT Simulator
+      │
+      ▼
+Amazon SQS
+      │
+      ▼
+AWS Lambda
+      │
+      ▼
+CloudWatch Logs
+```
+
+---
+
+## 🚀 Current Project Status
+
+- ✅ AWS IAM configured
+- ✅ AWS CLI configured
+- ✅ Amazon S3 bucket created
+- ✅ Amazon SQS queue created
+- ✅ Node.js IoT event simulator developed
+- ✅ AWS SDK integrated
+- ✅ AWS Lambda function created
+- ✅ SQS trigger connected to Lambda
+- ✅ CloudWatch logging verified
+- ⏳ DynamoDB integration in progress
