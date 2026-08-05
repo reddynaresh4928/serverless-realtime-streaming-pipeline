@@ -16,20 +16,22 @@
 - [x] AWS Lambda Function Creation
 - [x] SQS Trigger Configuration
 - [x] CloudWatch Logging
+- [x] Amazon DynamoDB Table Creation
+- [x] Lambda Integration with DynamoDB
+- [x] Store Events in DynamoDB
 - [x] End-to-End Pipeline Verification
 
 ---
 
 ## 🚧 In Progress
 
-- [ ] Amazon DynamoDB Integration
+- [ ] Amazon API Gateway
 
 ---
 
 ## ⏳ Pending
 
-- [ ] Store Events in DynamoDB
-- [ ] Amazon API Gateway
+- [ ] Create REST APIs
 - [ ] Next.js Dashboard
 - [ ] Display Real-Time IoT Events
 - [ ] Amazon S3 Report Storage

@@ -4,7 +4,7 @@
 
 This project demonstrates a serverless event-driven architecture built on AWS.
 
-A Node.js IoT event simulator generates random sensor events and sends them to Amazon SQS. AWS Lambda automatically processes incoming messages from the queue and records execution details in Amazon CloudWatch Logs. The project is being developed incrementally, with additional AWS services such as DynamoDB, API Gateway, and a Next.js dashboard planned in future phases.
+A Node.js IoT event simulator generates random sensor events and sends them to Amazon SQS. AWS Lambda automatically processes incoming messages from the queue and stores the processed events in Amazon DynamoDB. CloudWatch logs every Lambda execution for monitoring. The project will continue with API Gateway and a Next.js dashboard for real-time event visualization.
 
 ---
 
@@ -18,6 +18,9 @@ Amazon SQS Queue
         │
         ▼
 AWS Lambda
+        │
+        ▼
+Amazon DynamoDB
         │
         ▼
 CloudWatch Logs
@@ -40,6 +43,7 @@ CloudWatch Logs
 
 - Amazon SQS
 - AWS Lambda
+- Amazon DynamoDB
 - Amazon S3
 - Amazon CloudWatch
 - IAM
@@ -59,6 +63,7 @@ CloudWatch Logs
 - IoT event simulator using Node.js
 - Automatic message processing with AWS Lambda
 - Message queuing using Amazon SQS
+- Store processed events in Amazon DynamoDB
 - CloudWatch logging for monitoring
 - Modular project structure
 - AWS CLI integration
@@ -73,10 +78,10 @@ CloudWatch Logs
 - Day 2 – AWS Setup (IAM, AWS CLI, S3)
 - Day 3 – Amazon SQS & IoT Event Simulator
 - Day 4 – AWS Lambda & CloudWatch Integration
+- Day 5 – Amazon DynamoDB Integration
 
 ### ⏳ Upcoming
 
-- Day 5 – DynamoDB Integration
 - Day 6 – API Gateway
 - Day 7 – Next.js Dashboard
 - Day 8 – Monitoring Enhancements
@@ -97,6 +102,9 @@ Amazon SQS
 AWS Lambda
       │
       ▼
+Amazon DynamoDB
+      │
+      ▼
 CloudWatch Logs
 ```
 
@@ -113,4 +121,7 @@ CloudWatch Logs
 - ✅ AWS Lambda function created
 - ✅ SQS trigger connected to Lambda
 - ✅ CloudWatch logging verified
-- ⏳ DynamoDB integration in progress
+- ✅ Amazon DynamoDB table created
+- ✅ Lambda stores events in DynamoDB
+- ✅ End-to-end event pipeline verified
+- ⏳ API Gateway integration coming next
