@@ -78,11 +78,11 @@ CloudWatch Logs
 - Day 2 – AWS Setup (IAM, AWS CLI, S3)
 - Day 3 – Amazon SQS & IoT Event Simulator
 - Day 4 – AWS Lambda & CloudWatch Integration
-- Day 5 – Amazon DynamoDB Integration
+- Day 5 – DynamoDB Integration
+- Day 6 – API Gateway Integration
 
 ### ⏳ Upcoming
 
-- Day 6 – API Gateway
 - Day 7 – Next.js Dashboard
 - Day 8 – Monitoring Enhancements
 - Day 9 – S3 Report Storage
@@ -90,9 +90,6 @@ CloudWatch Logs
 
 ---
 
-## 📌 Current Workflow
-
-```text
 IoT Simulator
       │
       ▼
@@ -105,23 +102,21 @@ AWS Lambda
 Amazon DynamoDB
       │
       ▼
-CloudWatch Logs
-```
+API Gateway
+      │
+      ▼
+REST API
 
----
-
-## 🚀 Current Project Status
-
-- ✅ AWS IAM configured
-- ✅ AWS CLI configured
-- ✅ Amazon S3 bucket created
-- ✅ Amazon SQS queue created
-- ✅ Node.js IoT event simulator developed
-- ✅ AWS SDK integrated
-- ✅ AWS Lambda function created
-- ✅ SQS trigger connected to Lambda
-- ✅ CloudWatch logging verified
-- ✅ Amazon DynamoDB table created
-- ✅ Lambda stores events in DynamoDB
-- ✅ End-to-end event pipeline verified
-- ⏳ API Gateway integration coming next
+🚀 Current Project Status
+✅ AWS IAM configured
+✅ AWS CLI configured
+✅ Amazon S3 bucket created
+✅ Amazon SQS queue created
+✅ Node.js IoT event simulator developed
+✅ AWS SDK integrated
+✅ AWS Lambda consumer created
+✅ Amazon DynamoDB table created
+✅ Events stored in DynamoDB
+✅ API Gateway created
+✅ REST API tested successfully
+⏳ Next.js Dashboard in progress

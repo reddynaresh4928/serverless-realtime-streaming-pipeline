@@ -22,17 +22,12 @@
 - [x] End-to-End Pipeline Verification
 
 ---
-
 ## 🚧 In Progress
 
-- [ ] Amazon API Gateway
-
----
+- [ ] Next.js Dashboard
 
 ## ⏳ Pending
 
-- [ ] Create REST APIs
-- [ ] Next.js Dashboard
 - [ ] Display Real-Time IoT Events
 - [ ] Amazon S3 Report Storage
 - [ ] CloudWatch Metrics & Alarms
