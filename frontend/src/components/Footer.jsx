@@ -2,23 +2,28 @@
 
 export default function Footer() {
   return (
-    <footer className="mt-10 rounded-3xl bg-white p-6 shadow">
-      <div className="text-center">
+    <footer className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg dark:border-slate-700 dark:bg-slate-900">
 
-        <h2 className="text-lg font-bold text-gray-700">
-          Serverless IoT Monitoring Pipeline
-        </h2>
+      <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
 
-        <p className="mt-2 text-gray-500">
-          Built with Next.js • AWS Lambda • API Gateway •
-          DynamoDB • Amazon SQS • CloudWatch
-        </p>
+        <div>
 
-        <p className="mt-4 text-sm text-gray-400">
-          © 2026 • Real-Time Serverless Monitoring Dashboard
-        </p>
+          <h3 className="font-bold text-slate-800 dark:text-white">
+            Serverless IoT Monitoring Platform
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Built using Next.js, AWS Lambda, API Gateway, DynamoDB & CloudWatch
+          </p>
+
+        </div>
+
+        <div className="text-sm text-slate-500 dark:text-slate-400">
+          © 2026 All Rights Reserved
+        </div>
 
       </div>
+
     </footer>
   );
 }

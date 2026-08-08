@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import api from "../../lib/api";
+import { useMemo, useState } from "react";
+import { useDashboard } from "../context/DashboardContext";
 
 import Header from "../components/Header";
 import StatsCard from "../components/StatsCard";
@@ -14,6 +14,16 @@ import TemperatureChart from "../components/TemperatureChart";
 import HumidityChart from "../components/HumidityChart";
 import DeviceChart from "../components/DeviceChart";
 
+import DeviceCard from "../components/DeviceCard";
+import LiveActivity from "../components/LiveActivity";
+import SystemHealth from "../components/SystemHealth";
+
+import ExportButtons from "../components/ExportButtons";
+import AIInsights from "../components/AIInsights";
+import LoadingSkeleton from "../components/LoadingSkeleton";
+import ErrorState from "../components/ErrorState";
+
+
 import {
   Cpu,
   Activity,
@@ -22,58 +32,58 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("latest");
-  const [lastUpdated, setLastUpdated] = useState("--");
 
-  const fetchData = async () => {
-    try {
-      const response = await api.get("/events");
+  const {
+    events,
+    loading,
+    error,
+    lastUpdated,
+    fetchEvents,
+  } = useDashboard();
 
-      setEvents(response.data);
-      setLastUpdated(new Date().toLocaleTimeString());
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-
-    const interval = setInterval(fetchData, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // -------------------------
+  // Dashboard Statistics
+  // -------------------------
 
   const totalEvents = events.length;
 
-  const totalDevices = new Set(
-    events.map((e) => e.deviceId)
-  ).size;
+  const totalDevices = useMemo(() => {
+    return new Set(
+      events.map((event) => event.deviceId)
+    ).size;
+  }, [events]);
 
-  const avgTemp =
-    totalEvents > 0
-      ? (
-          events.reduce(
-            (sum, e) => sum + Number(e.temperature),
-            0
-          ) / totalEvents
-        ).toFixed(1)
-      : 0;
+  const avgTemp = useMemo(() => {
+    if (!events.length) return "0";
 
-  const avgHumidity =
-    totalEvents > 0
-      ? (
-          events.reduce(
-            (sum, e) => sum + Number(e.humidity),
-            0
-          ) / totalEvents
-        ).toFixed(1)
-      : 0;
+    return (
+      events.reduce(
+        (sum, event) =>
+          sum + Number(event.temperature),
+        0
+      ) / events.length
+    ).toFixed(1);
+  }, [events]);
 
-  // Search + Sort
-  const filteredEvents = events
+  const avgHumidity = useMemo(() => {
+    if (!events.length) return "0";
+
+    return (
+      events.reduce(
+        (sum, event) =>
+          sum + Number(event.humidity),
+        0
+      ) / events.length
+    ).toFixed(1);
+  }, [events]);
+  // -------------------------
+  // Search + Sorting
+  // -------------------------
+
+  const filteredEvents = useMemo(() => {
+  return [...events]
     .filter((event) =>
       event.deviceId
         .toLowerCase()
@@ -92,16 +102,60 @@ export default function Home() {
         new Date(b.timestamp)
       );
     });
+}, [events, search, sortOrder]);
 
-  // Chart Data
-  const chartData = filteredEvents.map((event) => ({
+  // -------------------------
+  // Latest Event Per Device
+  // -------------------------
+
+  const latestDevices = useMemo(() => {
+  return Object.values(
+    [...events]
+      .sort(
+        (a, b) =>
+          new Date(b.timestamp) -
+          new Date(a.timestamp)
+      )
+      .reduce((acc, event) => {
+        if (!acc[event.deviceId]) {
+          acc[event.deviceId] = event;
+        }
+
+        return acc;
+      }, {})
+  );
+}, [events]);
+
+  // -------------------------
+  // Charts
+  // -------------------------
+
+  const chartData = useMemo(() => {
+  return filteredEvents.map((event) => ({
     deviceId: event.deviceId,
     temperature: Number(event.temperature),
     humidity: Number(event.humidity),
   }));
+}, [filteredEvents]);
+
+// Loading State
+if (loading) {
+  return (
+    <main className="min-h-screen bg-slate-100 p-8 dark:bg-slate-950">
+      <LoadingSkeleton />
+    </main>
+  );
+}
+
+// Error State
+if (error) {
+  return (
+    <ErrorState retry={fetchEvents} />
+  );
+}
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-cyan-50 p-8">
+    <main className="min-h-screen bg-linear-to-br from-slate-100 via-blue-50 to-cyan-50 p-8 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
 
       <Header lastUpdated={lastUpdated} />
 
@@ -143,11 +197,55 @@ export default function Home() {
 
       </div>
 
+      {/* System Health */}
+
+      <section className="mb-10">
+        <SystemHealth />
+        <AIInsights events={events} />
+      </section>
+
+      {/* Device Overview */}
+
+      <section className="mb-10">
+
+        <div className="mb-6 flex items-center justify-between">
+
+          <div>
+
+            <h2 className="text-3xl font-bold text-slate-800 dark:text-white">
+              📡 Device Overview
+            </h2>
+
+            <p className="mt-1 text-slate-500 dark:text-slate-400">
+              Live status of all connected IoT devices
+            </p>
+
+          </div>
+
+          <span className="text-sm text-slate-500 dark:text-slate-400">
+            {latestDevices.length} Devices Connected
+          </span>
+
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+          {latestDevices.map((device) => (
+            <DeviceCard
+              key={device.deviceId}
+              device={device}
+            />
+          ))}
+
+        </div>
+
+      </section>
+
       {/* Analytics */}
 
       <section className="mb-10">
 
-        <h2 className="mb-6 text-3xl font-bold text-gray-800">
+        <h2 className="mb-6 text-3xl font-bold text-slate-800 dark:text-white">
           📊 Analytics Dashboard
         </h2>
 
@@ -167,6 +265,14 @@ export default function Home() {
 
       </section>
 
+      {/* Live Activity */}
+
+      <section className="mb-10">
+
+        <LiveActivity events={events} />
+
+      </section>
+
       {/* Search + Filter */}
 
       <div className="mb-6 grid gap-4 md:grid-cols-2">
@@ -183,9 +289,15 @@ export default function Home() {
 
       </div>
 
+      {/* Export */}
+
+<ExportButtons events={filteredEvents} />
+
       {/* Events Table */}
 
       <EventsTable events={filteredEvents} />
+
+      {/* Footer */}
 
       <Footer />
 
