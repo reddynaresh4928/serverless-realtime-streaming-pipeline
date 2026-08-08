@@ -4,6 +4,7 @@ import PageLayout from "../components/PageLayout";
 import ThemeProvider from "../providers/ThemeProvider";
 import { DashboardProvider } from "../context/DashboardContext";
 import { AlertProvider } from "../context/AlertContext";
+import { SettingsProvider } from "../context/SettingsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +31,21 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen bg-slate-100 dark:bg-slate-950 transition-colors">
 
     <ThemeProvider>
-  <DashboardProvider>
-    <AlertProvider>
+  <SettingsProvider>
 
-      <PageLayout>
-        {children}
-      </PageLayout>
+    <DashboardProvider>
 
-    </AlertProvider>
-  </DashboardProvider>
+      <AlertProvider>
+
+        <PageLayout>
+          {children}
+        </PageLayout>
+
+      </AlertProvider>
+
+    </DashboardProvider>
+
+  </SettingsProvider>
 </ThemeProvider>
 
 </body>

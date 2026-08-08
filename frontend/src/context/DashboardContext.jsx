@@ -8,18 +8,22 @@ import {
 } from "react";
 
 import api from "../../lib/api";
+import { useSettings } from "./SettingsContext";
 
 const DashboardContext = createContext();
 
 export function DashboardProvider({ children }) {
   const [events, setEvents] = useState([]);
-
   const [loading, setLoading] = useState(false);
-
   const [error, setError] = useState(null);
-
-  // ✅ New state
   const [lastUpdated, setLastUpdated] = useState("--");
+
+  // Get settings from SettingsContext
+  const { settings } = useSettings();
+
+  // Refresh interval (milliseconds)
+  const refreshInterval =
+    settings.refreshInterval * 1000;
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -30,8 +34,9 @@ export function DashboardProvider({ children }) {
 
       setEvents(response.data);
 
-      // ✅ Update only after successful fetch
-      setLastUpdated(new Date().toLocaleTimeString());
+      setLastUpdated(
+        new Date().toLocaleTimeString()
+      );
     } catch (err) {
       console.error(err);
       setError("Unable to load events.");
@@ -40,13 +45,17 @@ export function DashboardProvider({ children }) {
     }
   };
 
+  // Auto Refresh
   useEffect(() => {
     fetchEvents();
 
-    const interval = setInterval(fetchEvents, 5000);
+    const interval = setInterval(
+      fetchEvents,
+      refreshInterval
+    );
 
     return () => clearInterval(interval);
-  }, []);
+  }, [refreshInterval]);
 
   return (
     <DashboardContext.Provider
@@ -54,8 +63,9 @@ export function DashboardProvider({ children }) {
         events,
         loading,
         error,
-        lastUpdated,   // ✅ Export it
+        lastUpdated,
         fetchEvents,
+        refreshInterval,
       }}
     >
       {children}
