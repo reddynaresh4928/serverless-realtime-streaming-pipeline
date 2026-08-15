@@ -2,35 +2,32 @@
 
 ## ✅ Completed
 
-- [x] Day 1 – Project Setup
-- [x] GitHub Repository Setup
-- [x] AWS Account Setup
-- [x] IAM User Configuration
-- [x] AWS CLI Installation & Configuration
-- [x] Amazon S3 Bucket Creation
-- [x] Amazon SQS Queue Creation
-- [x] AWS SDK Integration
-- [x] Node.js IoT Event Simulator
-- [x] Random Sensor Event Generator
-- [x] Send Messages to Amazon SQS
-- [x] AWS Lambda Function Creation
-- [x] SQS Trigger Configuration
+- [x] AWS IAM Configuration
+- [x] AWS CLI Configuration
+- [x] Amazon SQS Queue
+- [x] AWS Lambda
 - [x] CloudWatch Logging
-- [x] Amazon DynamoDB Table Creation
-- [x] Lambda Integration with DynamoDB
-- [x] Store Events in DynamoDB
-- [x] End-to-End Pipeline Verification
-
----
-## 🚧 In Progress
-
-- [ ] Next.js Dashboard
-
-## ⏳ Pending
-
-- [ ] Display Real-Time IoT Events
-- [ ] Amazon S3 Report Storage
-- [ ] CloudWatch Metrics & Alarms
-- [ ] Testing & Optimization
-- [ ] Final Deployment
-- [ ] Documentation & Architecture Diagram
+- [x] Amazon DynamoDB
+- [x] API Gateway
+- [x] IoT Simulator
+- [x] Express Backend
+- [x] MongoDB Atlas
+- [x] JWT Authentication
+- [x] Register/Login
+- [x] Protected Routes
+- [x] Auth Context
+- [x] Landing Page
+- [x] Dashboard
+- [x] Profile Page
+- [x] Device Details
+- [x] Real-Time Dashboard
+- [x] Search & Filter
+- [x] Charts
+- [x] AI Insights
+- [x] Export CSV
+- [x] Export PDF
+- [x] Amazon S3 Report Storage
+- [x] Amazon SES Integration
+- [x] Amazon SNS Notifications
+- [x] CloudWatch Monitoring
+- [x] Settings Page
