@@ -15,6 +15,7 @@ import TemperatureChart from "../../components/TemperatureChart";
 import HumidityChart from "../../components/HumidityChart";
 import DeviceChart from "../../components/DeviceChart";
 import AIInsights from "../../components/AIInsights";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
 export default function AnalyticsPage() {
   const { events } = useDashboard();
@@ -60,6 +61,7 @@ export default function AnalyticsPage() {
   }, [events]);
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-slate-100 p-8 dark:bg-slate-950">
 
       {/* Hero */}
@@ -143,5 +145,6 @@ export default function AnalyticsPage() {
       </section>
 
     </main>
+    </ProtectedRoute>
   );
 }

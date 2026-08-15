@@ -11,6 +11,7 @@ import {
   Droplets,
   Save,
 } from "lucide-react";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
 export default function SettingsPage() {
 
@@ -24,6 +25,7 @@ export default function SettingsPage() {
 };
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-slate-100 p-8 dark:bg-slate-950">
 
       {/* Hero */}
@@ -244,5 +246,6 @@ export default function SettingsPage() {
       </div>
 
     </main>
+    </ProtectedRoute>
   );
 }

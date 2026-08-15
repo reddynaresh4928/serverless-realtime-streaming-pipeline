@@ -5,6 +5,7 @@ import { Cpu, Activity, Thermometer } from "lucide-react";
 
 import { useDashboard } from "../../context/DashboardContext";
 import DeviceCard from "../../components/DeviceCard";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
 export default function DevicesPage() {
   const { events } = useDashboard();
@@ -40,6 +41,7 @@ export default function DevicesPage() {
   }, [events]);
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-slate-100 p-8 dark:bg-slate-950">
 
       {/* Hero */}
@@ -138,5 +140,6 @@ export default function DevicesPage() {
       </section>
 
     </main>
+    </ProtectedRoute>
   );
 }
